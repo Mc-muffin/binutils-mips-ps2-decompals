@@ -12492,6 +12492,11 @@ macro (struct mips_cl_insn *ip, char *str)
 		  macro_build (&offset_expr, s, fmt, op[0], BFD_RELOC_GPREL16,
 			       mips_gp_register);
 		  relax_switch ();
+		  if (used_at) 
+		    {
+		      used_at = 0;
+		      tempreg = ZERO;
+		    }
 		}
 	      macro_build_lui (&offset_expr, tempreg);
 	      macro_build (&offset_expr, s, fmt, op[0],
